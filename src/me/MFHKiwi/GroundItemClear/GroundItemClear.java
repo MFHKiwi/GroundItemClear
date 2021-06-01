@@ -11,7 +11,6 @@ public class GroundItemClear extends JavaPlugin {
 	public void onEnable() {
 		File configFile = new File(this.getDataFolder() + File.separator + "config.yml");
 		Configuration config = new Configuration(configFile);
-		log.info(String.valueOf(this.getDataFolder()));
 		if (!configFile.exists()) {
 			if (!this.getDataFolder().exists()) {
 				this.getDataFolder().mkdirs();
