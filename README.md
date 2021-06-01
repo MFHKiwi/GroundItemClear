@@ -9,4 +9,9 @@ Commands:
   * `/gic info`: Display information about the plugin
   * `/gic clear`: Clear ground items
 
+Permissions:
+ * `gic.clear`: Gives access to `/gic clear`
+
+This plugin can use either Bukkit's `permissions.yml` or PermissionsEx.
+
 Please note that this plugin will not receive a port for modern versions as those have superior plugins, like ClearLagg. I'm only creating this plugin because I was not able to find anything of the sort for CB 1060.
