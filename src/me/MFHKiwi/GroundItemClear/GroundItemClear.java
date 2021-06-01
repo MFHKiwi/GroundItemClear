@@ -23,7 +23,7 @@ public class GroundItemClear extends JavaPlugin {
 		int tick_interval = ((Integer)config.getProperty("ClearInterval")) * 20;
 		if (tick_interval < 200) tick_interval = 200;
 		getCommand("gic").setExecutor(new GroundItemClearCommand(this));
-		getServer().getScheduler().scheduleAsyncRepeatingTask((Plugin) this, new GroundItemClearTask(this), 200, tick_interval);
+		getServer().getScheduler().scheduleAsyncRepeatingTask((Plugin) this, new GroundItemClearTask(this), tick_interval, tick_interval);
 		log.info('[' + getDescription().getFullName() + "] enabled.");
 	}
 	public void onDisable() {
