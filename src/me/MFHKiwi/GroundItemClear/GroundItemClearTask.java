@@ -10,11 +10,13 @@ import org.bukkit.entity.Item;
 
 public class GroundItemClearTask implements Runnable  {
 	private final GroundItemClear plugin;
-	private final ChatColor aqua = ChatColor.DARK_AQUA;
-	private final ChatColor red = ChatColor.RED;
+	private final ChatColor colour1;
+	private final ChatColor colour2;
 
-	public GroundItemClearTask(GroundItemClear plugin) {
+	public GroundItemClearTask(GroundItemClear plugin, ChatColor colour1, ChatColor colour2) {
 		this.plugin = plugin;
+		this.colour1 = colour1;
+		this.colour2 = colour2;
 	}
 	
 	public static final List<Entity> getItemsInWorld(World world) {
@@ -35,7 +37,7 @@ public class GroundItemClearTask implements Runnable  {
 				entity.remove();
 			}
 		}
-		Bukkit.getServer().broadcastMessage(aqua + "Removed " + red + item_count + aqua + " items.");
+		Bukkit.getServer().broadcastMessage(colour2 + "Removed " + colour1 + item_count + colour2 + " items.");
 		plugin.log.info("Removed " + item_count + " items.");
 	}
 }

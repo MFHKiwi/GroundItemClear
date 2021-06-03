@@ -1,5 +1,5 @@
 name: GroundItemClear
-version: 1.0
+version: 1.1
 main: me.MFHKiwi.GroundItemClear.GroundItemClear
 description: A plugin for CraftBukkit 1060 that automatically clears ground items to reduce lag.
 author: MFHKiwi
