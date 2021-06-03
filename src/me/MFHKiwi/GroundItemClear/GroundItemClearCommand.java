@@ -22,7 +22,7 @@ public class GroundItemClearCommand implements CommandExecutor {
 		this.plugin = plugin; // Initialise variables.
 		this.colour1 = colour1;
 		this.colour2 = colour2;
-		this.help_text[0] = colour2 + "-=- " + colour1 + "GroundItemClear help" + colour1 + " -=-";
+		this.help_text[0] = colour2 + "-=- " + colour1 + "GroundItemClear help" + colour2 + " -=-";
 		this.help_text[1] = colour2 + " - " + colour1 + "/gic help" + colour2 + ": Show this help screen";
 		this.help_text[2] = colour2 + " - " + colour1 + "/gic info" + colour2 + ": Show plugin info";
 		this.help_text[3] = colour2 + " - " + colour1 + "/gic clear" + colour2 + ": Clear all items";
