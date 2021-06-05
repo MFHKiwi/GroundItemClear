@@ -13,6 +13,7 @@ public class GroundItemClear extends JavaPlugin {
 	public final Logger log = Logger.getLogger("Minecraft"); // Create logger to log to console.
 	public ChatColor colour1; // Create colour variables to pass to other classes.
 	public ChatColor colour2;
+	@SuppressWarnings("serial")
 	public final Map<String, ChatColor> colours = new HashMap<String, ChatColor>() {{
 		put("&0", ChatColor.BLACK); // Fill colour map.
 		put("&1", ChatColor.DARK_BLUE);
