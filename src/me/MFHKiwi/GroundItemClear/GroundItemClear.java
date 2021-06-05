@@ -13,26 +13,26 @@ public class GroundItemClear extends JavaPlugin {
 	public final Logger log = Logger.getLogger("Minecraft"); // Create logger to log to console.
 	public ChatColor colour1; // Create colour variables to pass to other classes.
 	public ChatColor colour2;
-	public final Map<String, ChatColor> colours = new HashMap<String, ChatColor>(); /* Create colour map to allow simple
-		Bukkit chat codes to be used in config.yml*/
+	public final Map<String, ChatColor> colours = new HashMap<String, ChatColor>() {{
+		put("&0", ChatColor.BLACK); // Fill colour map.
+		put("&1", ChatColor.DARK_BLUE);
+		put("&2", ChatColor.DARK_GREEN);
+		put("&3", ChatColor.DARK_AQUA);
+		put("&4", ChatColor.DARK_RED);
+		put("&5", ChatColor.DARK_PURPLE);
+		put("&6", ChatColor.GOLD);
+		put("&7", ChatColor.GRAY);
+		put("&8", ChatColor.DARK_GRAY);
+		put("&9", ChatColor.BLUE);
+		put("&a", ChatColor.GREEN);
+		put("&b", ChatColor.AQUA);
+		put("&c", ChatColor.RED);
+		put("&d", ChatColor.LIGHT_PURPLE);
+		put("&e", ChatColor.YELLOW);
+		put("&f", ChatColor.WHITE);
+	}}; // Create colour map to allow simple Bukkit chat codes to be used in config.yml
 	
 	public void onEnable() { // Plugin entry point
-		this.colours.put("&0", ChatColor.BLACK); // Fill colour map.
-		this.colours.put("&1", ChatColor.DARK_BLUE);
-		this.colours.put("&2", ChatColor.DARK_GREEN);
-		this.colours.put("&3", ChatColor.DARK_AQUA);
-		this.colours.put("&4", ChatColor.DARK_RED);
-		this.colours.put("&5", ChatColor.DARK_PURPLE);
-		this.colours.put("&6", ChatColor.GOLD);
-		this.colours.put("&7", ChatColor.GRAY);
-		this.colours.put("&8", ChatColor.DARK_GRAY);
-		this.colours.put("&9", ChatColor.BLUE);
-		this.colours.put("&a", ChatColor.GREEN);
-		this.colours.put("&b", ChatColor.AQUA);
-		this.colours.put("&c", ChatColor.RED);
-		this.colours.put("&d", ChatColor.LIGHT_PURPLE);
-		this.colours.put("&e", ChatColor.YELLOW);
-		this.colours.put("&f", ChatColor.WHITE);
 		File configFile = new File(this.getDataFolder() + File.separator + "config.yml"); // Create file object to interact with config.yml.
 		Configuration config = new Configuration(configFile); // Pass configFile to Bukkit's configuration manager.
 		if (!configFile.exists()) { // Check if config and config folder exist.
