@@ -9,37 +9,35 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 
 public class GroundItemClearTask implements Runnable  {
-	private final GroundItemClear plugin; // Provide access to main class.
-	private final ChatColor colour1; // Create colours.
+	private final GroundItemClear plugin;
+	private final ChatColor colour1;
 	private final ChatColor colour2;
 
-	public GroundItemClearTask(GroundItemClear plugin, ChatColor colour1, ChatColor colour2) { /* Class constructor
-			to allow passing arguments without making run() invalid to Runnable.*/
-		this.plugin = plugin; // Initialise variables.
+	public GroundItemClearTask(GroundItemClear plugin, ChatColor colour1, ChatColor colour2) {
+		this.plugin = plugin;
 		this.colour1 = colour1;
 		this.colour2 = colour2;
 	}
 	
-	public static final List<Entity> getItemsInWorld(World world) { // Method to collect a list of all items in the given world.
+	public static final List<Entity> getItemsInWorld(World world) {
 		List<Entity> items = new ArrayList<Entity>();
-		for (Entity entity : world.getEntities()) { // Pass through list given by world.getEntities().
-			if (entity instanceof Item) { // Check if entity is org.bukkit.entity.Item.
-				items.add(entity); // If so, add to item list.
+		for (Entity entity : world.getEntities()) {
+			if (entity instanceof Item) {
+				items.add(entity);
 			} else;
 		}
-		return items; // Return item list.
+		return items;
 	}
 	
 	public void run() {
 		int item_count = 0;
-		for (World world : Bukkit.getServer().getWorlds()) { // Go through all worlds.
-			item_count = item_count + getItemsInWorld(world).size(); // Save size of item list.
-			for (Entity entity : getItemsInWorld(world)) { // Remove every entity in the list.
+		for (World world : Bukkit.getServer().getWorlds()) {
+			item_count = item_count + getItemsInWorld(world).size();
+			for (Entity entity : getItemsInWorld(world)) {
 				entity.remove();
 			}
 		}
-		Bukkit.getServer().broadcastMessage(colour2 + "Removed " + colour1 + item_count + colour2 + " items."); /* Announce in
-			server chat and console the amount of items removed.*/
+		Bukkit.getServer().broadcastMessage(colour2 + "Removed " + colour1 + item_count + colour2 + " items.");
 		plugin.log.info("Removed " + item_count + " items.");
 	}
 }

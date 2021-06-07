@@ -10,8 +10,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.config.Configuration;
 
 public class GroundItemClear extends JavaPlugin {
-	public final Logger log = Logger.getLogger("Minecraft"); // Create logger to log to console.
-	public ChatColor colour1; // Create colour variables to pass to other classes.
+	public final Logger log = Logger.getLogger("Minecraft");
+	public ChatColor colour1;
 	public ChatColor colour2;
 	@SuppressWarnings("serial")
 	public final Map<String, ChatColor> colours = new HashMap<String, ChatColor>() {{
@@ -31,35 +31,33 @@ public class GroundItemClear extends JavaPlugin {
 		put("&d", ChatColor.LIGHT_PURPLE);
 		put("&e", ChatColor.YELLOW);
 		put("&f", ChatColor.WHITE);
-	}}; // Create colour map to allow simple Bukkit chat codes to be used in config.yml
+	}};
 	
 	public void onEnable() { // Plugin entry point
-		File configFile = new File(this.getDataFolder() + File.separator + "config.yml"); // Create file object to interact with config.yml.
-		Configuration config = new Configuration(configFile); // Pass configFile to Bukkit's configuration manager.
-		if (!configFile.exists()) { // Check if config and config folder exist.
+		File configFile = new File(this.getDataFolder() + File.separator + "config.yml");
+		Configuration config = new Configuration(configFile);
+		if (!configFile.exists()) {
 			if (!this.getDataFolder().exists()) {
-				this.getDataFolder().mkdirs(); // If not, create folder and config.
+				this.getDataFolder().mkdirs();
 			} else;
 			config.setHeader("# ClearInterval: Time in seconds between item clear passes. Numbers below 10 are interpreted as 10.\n"
 					+ "# Colour1 and Colour2: Bukkit colour codes to set the colours of in-game messages from GIC."); /*
 					Put default settings in config.*/
 			config.setProperty("ClearInterval", Integer.valueOf(300));
 			config.setProperty("Colour1", "&c");
-			config.setProperty("Colour2", "&b");
-			config.save(); // Write config.
-		} else config.load(); // If config exists, load it.
-		this.colour1 = colours.get(config.getProperty("Colour1")); // Load colours from config.
+			config.setProperty("Colour2", "&3");
+			config.save();
+		} else config.load();
+		this.colour1 = colours.get(config.getProperty("Colour1"));
 		this.colour2 = colours.get(config.getProperty("Colour2"));
-		int tick_interval = ((Integer)config.getProperty("ClearInterval")) * 20; // Load interval (in ticks) from config.
-		if (tick_interval < 200) tick_interval = 200; // If interval is lower than 200 ticks (10 seconds), set to 200 ticks.
-		getCommand("gic").setExecutor(new GroundItemClearCommand(this, colour1, colour2)); // Register command /gic.
-		getServer().getScheduler().scheduleAsyncRepeatingTask((Plugin) this, new GroundItemClearTask(this, this.colour1, this.colour2), tick_interval, tick_interval); /*
-			Schedule clear task.*/
-		log.info('[' + getDescription().getFullName() + "] enabled."); /* Print load message to console with information from
-			plugin.yml*/
+		int tick_interval = ((Integer)config.getProperty("ClearInterval")) * 20;
+		if (tick_interval < 400) tick_interval = 400;
+		getCommand("gic").setExecutor(new GroundItemClearCommand(this, colour1, colour2));
+		getServer().getScheduler().scheduleSyncRepeatingTask((Plugin) this, new GroundItemClearWaitTask(this, this.colour1, this.colour2, tick_interval, 400), 100, 1);
+		log.info('[' + getDescription().getFullName() + "] enabled.");
 	}
 	
 	public void onDisable() {
-		log.info('[' + getDescription().getFullName() + "] disabled."); // Print unload message to console.
+		log.info('[' + getDescription().getFullName() + "] disabled.");
 	}
 }
