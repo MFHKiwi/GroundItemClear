@@ -15,7 +15,7 @@ public class GroundItemClear extends JavaPlugin {
 	public ChatColor colour2;
 	@SuppressWarnings("serial")
 	public final Map<String, ChatColor> colours = new HashMap<String, ChatColor>() {{
-		put("&0", ChatColor.BLACK); // Fill colour map.
+		put("&0", ChatColor.BLACK);
 		put("&1", ChatColor.DARK_BLUE);
 		put("&2", ChatColor.DARK_GREEN);
 		put("&3", ChatColor.DARK_AQUA);
@@ -33,16 +33,15 @@ public class GroundItemClear extends JavaPlugin {
 		put("&f", ChatColor.WHITE);
 	}};
 	
-	public void onEnable() { // Plugin entry point
+	public void onEnable() {
 		File configFile = new File(this.getDataFolder() + File.separator + "config.yml");
 		Configuration config = new Configuration(configFile);
 		if (!configFile.exists()) {
 			if (!this.getDataFolder().exists()) {
 				this.getDataFolder().mkdirs();
 			} else;
-			config.setHeader("# ClearInterval: Time in seconds between item clear passes. Numbers below 10 are interpreted as 10.\n"
-					+ "# Colour1 and Colour2: Bukkit colour codes to set the colours of in-game messages from GIC."); /*
-					Put default settings in config.*/
+			config.setHeader("# ClearInterval: Time in seconds between item clear passes. Numbers below 20 are interpreted as 20.\n"
+					+ "# Colour1 and Colour2: Bukkit colour codes to set the colours of in-game messages from GIC.");
 			config.setProperty("ClearInterval", Integer.valueOf(300));
 			config.setProperty("Colour1", "&c");
 			config.setProperty("Colour2", "&3");
